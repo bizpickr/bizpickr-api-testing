@@ -1,0 +1,20 @@
+meta {
+  name: get/vendor/complainces
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{vendorServiceUrl}}/compliance/admin/:vendorId/compliances
+  body: none
+  auth: inherit
+}
+
+params:path {
+  vendorId: b2f22021-c00e-46c4-9035-bc56e6cdc8de
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

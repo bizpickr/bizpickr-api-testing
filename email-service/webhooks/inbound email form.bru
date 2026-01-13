@@ -1,0 +1,20 @@
+meta {
+  name: Inbound Email Webhook (Form URL Encoded)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{emailServiceUrl}}/webhook/inbound
+  body: formUrlEncoded
+  auth: none
+}
+
+body:form-url-encoded {
+  to: {{replyAddress}}
+  from: ramesh@neelnetworks.com
+  subject: Re: Project Discussion
+  text: This is a test email reply
+  html: <p>This is a test email reply</p>
+  message-id: sendgrid_form_12345@neelnetworks.com
+}

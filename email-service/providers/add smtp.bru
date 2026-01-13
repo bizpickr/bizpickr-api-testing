@@ -1,0 +1,31 @@
+meta {
+  name: Add SMTP Provider
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{emailServiceUrl}}/providers
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Gmail SMTP",
+    "type": "smtp",
+    "config": {
+      "host": "smtp.gmail.com",
+      "port": 587,
+      "secure": false,
+      "auth": {
+        "user": "your_email@gmail.com",
+        "pass": "your_app_password"
+      },
+      "fromEmail": "your_email@gmail.com",
+      "fromName": "BizPickr Support"
+    },
+    "isActive": true,
+    "priority": 2
+  }
+}

@@ -1,0 +1,11 @@
+meta {
+  name: 4. Verify Message Created
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{chatServiceUrl}}/channels/{{channelId}}/messages
+  body: none
+  auth: inherit
+}

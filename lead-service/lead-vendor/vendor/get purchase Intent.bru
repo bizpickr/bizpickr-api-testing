@@ -1,0 +1,20 @@
+meta {
+  name: get purchase Intent
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{leadServiceUrl}}/purchase/:leadId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  leadId: a972b161-7e59-403f-bff9-5700b030f520
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,11 @@
+meta {
+  name: Get Email Tracking
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{emailServiceUrl}}/email/track/{{messageId}}
+  body: none
+  auth: inherit
+}

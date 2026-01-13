@@ -1,0 +1,26 @@
+meta {
+  name: update matrix
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{serviceCatalogUrl}}/pricing-matrices/:pricingMatrixId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  pricingMatrixId: 85efd4a3-f57f-409a-bb04-a09d8ca43a6a
+}
+
+body:json {
+  {
+    "coinsToPay": 600
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

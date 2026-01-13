@@ -1,0 +1,21 @@
+meta {
+  name: my work samples
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{vendorServiceUrl}}/work-sample/mine
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~limit: 2
+  ~offset: 2
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

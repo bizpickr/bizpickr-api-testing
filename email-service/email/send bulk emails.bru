@@ -1,0 +1,30 @@
+meta {
+  name: Send Bulk Emails
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{emailServiceUrl}}/email/send-bulk
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "emails": [
+      {
+        "to": "customer1@example.com",
+        "subject": "Bulk Email Test",
+        "template": "test",
+        "data": {}
+      },
+      {
+        "to": "customer2@example.com",
+        "subject": "Bulk Email Test",
+        "template": "test",
+        "data": {}
+      }
+    ]
+  }
+}

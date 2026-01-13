@@ -1,0 +1,16 @@
+meta {
+  name: get all services
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{vendorServiceUrl}}/service-offering/admin/services
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

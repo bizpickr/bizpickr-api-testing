@@ -1,0 +1,11 @@
+meta {
+  name: Get File History
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{fileServiceUrl}}/history?uploaderId=vendor-123&uploaderType=vendor&limit=50&offset=0
+  body: none
+  auth: inherit
+}

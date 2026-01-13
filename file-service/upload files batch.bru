@@ -1,0 +1,17 @@
+meta {
+  name: Upload Files (Batch)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{fileServiceUrl}}/upload/batch
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  files: @file()
+  uploadedBy: {"id":"vendor-123","type":"vendor"}
+  context: {"service":"chat-service","entityId":"channel-123","entityType":"chat","documentType":"attachment"}
+}

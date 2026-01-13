@@ -1,0 +1,32 @@
+meta {
+  name: update service category
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{serviceCatalogUrl}}/:serviceId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  serviceId: 8c953a43-3a28-474f-a7ab-e611f9864271
+}
+
+body:json {
+  {
+    "name": "Graphic Design"
+  }
+}
+
+script:post-response {
+  const { data } = res.body;
+  if (!data || !data.id) throw Error("no service id found");
+  bru.setEnvVar("serviceId", data.id);
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,23 @@
+meta {
+  name: create-super-admin
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{authServiceUrl}}/admin/create-super-admin
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "vishalbarve@gmail.com",
+    "password": "Vi2305@$"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

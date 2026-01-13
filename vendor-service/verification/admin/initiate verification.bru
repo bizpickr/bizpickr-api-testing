@@ -1,0 +1,20 @@
+meta {
+  name: initiate verification
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{vendorServiceUrl}}/verification/admin/:vendorId/initiate
+  body: none
+  auth: inherit
+}
+
+params:path {
+  vendorId: b2f22021-c00e-46c4-9035-bc56e6cdc8de
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

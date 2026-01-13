@@ -1,0 +1,11 @@
+meta {
+  name: Get Payment History
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/history
+  body: none
+  auth: inherit
+}

@@ -1,0 +1,25 @@
+meta {
+  name: create zone country
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{serviceCatalogUrl}}/zone-countries
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "zoneId": "80f4156b-ea35-43ef-bbd0-f506e6975a11",
+    "country": "Afganistan",
+    "countryCode": "AFG",
+    "countryFlag": "https://chatgpt.com/c/69390c9a-3c68-832b-b6b1-b8ebc3ee481b"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

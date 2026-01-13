@@ -1,0 +1,24 @@
+meta {
+  name: create addon
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{serviceCatalogUrl}}/addons/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "high level design",
+    "description": "some description",
+    "serviceId": "723cea57-0288-4ace-b073-f1a8ad1647a0"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

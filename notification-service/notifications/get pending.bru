@@ -1,0 +1,11 @@
+meta {
+  name: Get Pending Notifications
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{notificationServiceUrl}}/pending?days=7
+  body: none
+  auth: inherit
+}

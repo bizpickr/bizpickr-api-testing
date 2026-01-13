@@ -1,0 +1,25 @@
+meta {
+  name: Add SendGrid Provider
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{emailServiceUrl}}/providers
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "SendGrid API",
+    "type": "sendgrid",
+    "config": {
+      "apiKey": "SG.your_sendgrid_api_key_here",
+      "fromEmail": "bizpickr@domain.com",
+      "fromName": "BizPickr"
+    },
+    "isActive": true,
+    "priority": 1
+  }
+}

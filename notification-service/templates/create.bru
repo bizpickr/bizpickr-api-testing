@@ -1,0 +1,32 @@
+meta {
+  name: Create Template
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{notificationApiUrl}}/v1/templates
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Payment Success",
+    "type": "PAYMENT",
+    "recipientType": "vendor",
+    "channels": {
+      "socket": {
+        "title": "Payment Received: {{amount}}",
+        "message": "You have received a payment of {{amount}} for {{service}}"
+      },
+      "email": {
+        "subject": "Payment Received - {{amount}}",
+        "body": "Dear {{vendorName}}, you have received a payment of {{amount}} for {{service}}"
+      }
+    },
+    "variables": ["amount", "service", "vendorName"],
+    "isActive": true,
+    "description": "Template for payment success notifications"
+  }
+}

@@ -1,0 +1,11 @@
+meta {
+  name: Get Refund Status
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{paymentServiceUrl}}/api/v1/payment/refund/status/{{refundId}}
+  body: none
+  auth: inherit
+}

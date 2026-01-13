@@ -1,0 +1,20 @@
+meta {
+  name: delete zone country
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{serviceCatalogUrl}}/zone-countries/:zoneCountryId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  zoneCountryId: e8fdeb94-026d-449b-b1c7-e86152fdb10c
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,11 @@
+meta {
+  name: Get Session Details
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/session/{{sessionId}}
+  body: none
+  auth: inherit
+}

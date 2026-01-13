@@ -1,0 +1,18 @@
+meta {
+  name: Test Email Threading
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{chatServiceUrl}}/professional-email/test-threading
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "replyAddress": "{{replyAddress}}",
+    "testEmail": "test@example.com"
+  }
+}

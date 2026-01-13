@@ -1,0 +1,30 @@
+meta {
+  name: create/basic
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{vendorServiceUrl}}/profile/basic
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "type": "company",
+    "fullName": "Test Vendor",
+    "phone": "+1-555-345-6789",
+    "gender": "male",
+    "dateOfBirth": "1992-11-08",
+    "bio": "bio something",
+    "profilePicture": "https://example.com/michael-avatar.png",
+    "country": "India",
+    "countryISOCode": "IND"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

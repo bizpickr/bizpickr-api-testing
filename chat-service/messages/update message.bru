@@ -1,0 +1,17 @@
+meta {
+  name: Update Message
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{chatServiceUrl}}/messages/{{messageId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "content": "Updated message content"
+  }
+}

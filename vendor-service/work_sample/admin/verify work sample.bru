@@ -1,0 +1,27 @@
+meta {
+  name: verify work sample
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{vendorServiceUrl}}/work-sample/admin/:worksampleId/verify
+  body: json
+  auth: inherit
+}
+
+params:path {
+  worksampleId: 4a27c454-9cfe-402e-a2a8-5aa849aac564
+}
+
+body:json {
+  {
+    "action": "approve",
+    "notes": "this is good"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

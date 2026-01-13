@@ -1,0 +1,20 @@
+meta {
+  name: finalize verification
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{vendorServiceUrl}}/verification/admin/:vendorId/finalize
+  body: none
+  auth: inherit
+}
+
+params:path {
+  vendorId: 34ae779d-d4c0-4057-a0a9-87e2c6977d6d
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

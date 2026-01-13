@@ -1,0 +1,31 @@
+meta {
+  name: 1. Create Channel
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{chatServiceUrl}}/channels
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "leadId": "lead_12345",
+    "vendorId": "vendor_67890",
+    "customerId": "customer_11111",
+    "participants": {
+      "vendor": {
+        "id": "vendor_67890",
+        "name": "Ramesh Mahto",
+        "email": "ramesh@neelnetworks.com"
+      },
+      "customer": {
+        "id": "customer_11111",
+        "name": "Jane Customer",
+        "email": "rameshtest151@gmail.com"
+      }
+    }
+  }
+}

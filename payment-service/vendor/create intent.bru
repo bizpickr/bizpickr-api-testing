@@ -1,0 +1,23 @@
+meta {
+  name: Create Payment Intent
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/intent
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "amount": 50,
+    "currency": "usd",
+    "provider": "stripe",
+    "metadata": {
+      "package": "Starter Pack",
+      "coins": 50
+    }
+  }
+}

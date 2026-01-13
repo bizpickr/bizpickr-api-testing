@@ -1,0 +1,11 @@
+meta {
+  name: List All Templates
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{notificationApiUrl}}/v1/templates?page=1&limit=10
+  body: none
+  auth: inherit
+}

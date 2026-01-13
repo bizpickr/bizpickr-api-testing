@@ -1,0 +1,22 @@
+meta {
+  name: grpc test
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:3006/api/v1/test/grpc/service-catalog?serviceId=f68f7c25-e83c-4825-9035-c0f399f9f55a&countryISO=IND&vendorType=freelancer
+  body: none
+  auth: inherit
+}
+
+params:query {
+  serviceId: f68f7c25-e83c-4825-9035-c0f399f9f55a
+  countryISO: IND
+  vendorType: freelancer
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

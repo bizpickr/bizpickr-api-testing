@@ -1,0 +1,20 @@
+meta {
+  name: work by serviceOffering id
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{vendorServiceUrl}}/work-sample/service/:serviceOfferingId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  serviceOfferingId: 54761c5c-687d-436f-8ec6-85bae1001cee
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

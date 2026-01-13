@@ -1,0 +1,20 @@
+meta {
+  name: get compliance by id
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{vendorServiceUrl}}/compliance/:complianceId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  complianceId: c2513464-22d6-46d8-87e1-879e5ca2ff2f
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

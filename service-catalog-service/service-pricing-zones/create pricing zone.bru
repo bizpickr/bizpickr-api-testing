@@ -1,0 +1,29 @@
+meta {
+  name: create pricing zone
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{serviceCatalogUrl}}/pricing-zones
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Medium prizing Zone",
+    "description": "medium/low pricing zone for services"
+  }
+}
+
+script:post-response {
+  const { data } = res.body;
+  if (!data || !data.id) throw Error("zone id is not captured")
+  bru.setEnvVar("zoneId", data.id)
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

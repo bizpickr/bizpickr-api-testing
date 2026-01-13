@@ -1,0 +1,26 @@
+meta {
+  name: create
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{vendorServiceUrl}}/work-sample
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "serviceOfferingId": "cb116d3a-e525-41b0-bbb9-fea44fddc17d",
+    "title": "Banking App",
+    "description": "Complete redesign of mobile banking application focusing on user experience and accessibility. Created wireframes, prototypes, and high-fidelity designs using Figma. Conducted user research and usability testing to improve conversion rates by 35%.",
+    "url": "https://www.google.com",
+    "screenshots": null
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

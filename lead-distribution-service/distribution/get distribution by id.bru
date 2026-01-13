@@ -1,0 +1,24 @@
+meta {
+  name: get distribution by id
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{leadDistributionUrl}}/distribution/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: d3e3acb5-b5cc-47c6-baaf-e07e8dc6d010
+}
+
+vars:pre-request {
+  local: http://localhost:3005/api/v1/lead-distribution
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,18 @@
+meta {
+  name: Update Template
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{emailServiceUrl}}/templates/chat_message
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "subject": "Updated Subject",
+    "htmlContent": "<h1>Updated Content</h1>"
+  }
+}

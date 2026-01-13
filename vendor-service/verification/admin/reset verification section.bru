@@ -1,0 +1,21 @@
+meta {
+  name: reset verification section
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{vendorServiceUrl}}/verification/admin/:vendorId/sections/:section/reset
+  body: none
+  auth: inherit
+}
+
+params:path {
+  vendorId: 807c99b4-28c5-4ce1-a224-f083e0177a56
+  section: basicDetails
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

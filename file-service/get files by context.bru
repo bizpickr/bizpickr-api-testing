@@ -1,0 +1,11 @@
+meta {
+  name: Get Files by Context
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{fileServiceUrl}}/context?service=vendor-service&entityType=compliance&entityId=vendor-123&status=ready
+  body: none
+  auth: inherit
+}

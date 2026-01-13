@@ -1,0 +1,20 @@
+meta {
+  name: reset work samples
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{vendorServiceUrl}}/work-sample/admin/:workSampleId/reset
+  body: none
+  auth: inherit
+}
+
+params:path {
+  workSampleId: 3443530e-59e7-4626-8a83-531650fde4a4
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,20 @@
+meta {
+  name: get matrix by service
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{serviceCatalogUrl}}/pricing-matrices/service/:serviceId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  serviceId: 723cea57-0288-4ace-b073-f1a8ad1647a0
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

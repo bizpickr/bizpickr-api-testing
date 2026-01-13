@@ -1,0 +1,27 @@
+meta {
+  name: Send Single Notification
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{notificationServiceUrl}}/send
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "recipientId": "vendor_123",
+    "recipientType": "vendor",
+    "title": "New Lead Available",
+    "message": "You have a new lead in Web Development category",
+    "category": "LEAD",
+    "subCategory": "NEW_LEAD",
+    "data": {
+      "leadId": "lead_456",
+      "category": "Web Development",
+      "budget": 50000
+    }
+  }
+}

@@ -1,0 +1,20 @@
+meta {
+  name: get work sample  by id
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{vendorServiceUrl}}/work-sample/:workSampleId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  workSampleId: c2ba26e7-9676-42eb-b0fb-0e851c3a2803
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

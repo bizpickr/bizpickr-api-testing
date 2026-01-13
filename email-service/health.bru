@@ -1,0 +1,11 @@
+meta {
+  name: EmailService Health
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{emailServiceUrl}}/health
+  body: none
+  auth: none
+}

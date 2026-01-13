@@ -1,0 +1,22 @@
+meta {
+  name: invite admin
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{authServiceUrl}}/admin/invite
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "admin@gmail.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,22 @@
+meta {
+  name: get all services
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{serviceCatalogUrl}}/?status=ACTIVE
+  body: none
+  auth: inherit
+}
+
+params:query {
+  status: ACTIVE
+  ~limit: 1
+  ~page: 4
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

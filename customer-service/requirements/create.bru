@@ -1,0 +1,41 @@
+meta {
+  name: create
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{customerServiceUrl}}/requirements
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "serviceId": "8dee7120-27a7-446d-8948-89d4143504fd",
+          "serviceName": "Website Developement",
+    "selectedAddons": [
+      {
+        "addonId": "addon-responsive-001",
+        "addonName": "Responsive Design"
+      },
+      {
+        "addonId": "addon-seo-001",
+        "addonName": "SEO Optimization"
+      }
+    ],
+    "budgetType": "fixed",
+    "budget": 5000,
+    "country": "India",
+    "city": "Mumbai",
+    "vendorType": "company",
+    "noOfVendors": 3,
+    "estimatedTime": "ASAP",
+    "description": "I need a modern e-commerce website with user authentication, payment integration, and admin dashboard. The site should be mobile-responsive and optimized for search engines."
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

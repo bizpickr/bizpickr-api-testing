@@ -1,0 +1,19 @@
+meta {
+  name: Request Refund
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{paymentServiceUrl}}/api/v1/payment/refund/request
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "paymentId": "pay_123",
+    "amount": 50,
+    "reason": "Customer requested refund"
+  }
+}

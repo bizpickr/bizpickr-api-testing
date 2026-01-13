@@ -1,0 +1,20 @@
+meta {
+  name: retry inbox
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3004/api/v1/inbox/retry/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: c4e06ca7-b893-4fd8-a37c-c589b0a2196b
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

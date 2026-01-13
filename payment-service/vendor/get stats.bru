@@ -1,0 +1,11 @@
+meta {
+  name: Get Payment Stats
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/stats
+  body: none
+  auth: inherit
+}

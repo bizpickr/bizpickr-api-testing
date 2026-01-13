@@ -1,0 +1,21 @@
+meta {
+  name: my leads
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{leadServiceUrl}}/vendor/leads
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~leadStatus: ACTIVE
+  ~vendorStatus: PURCHASED
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

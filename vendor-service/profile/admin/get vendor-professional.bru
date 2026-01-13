@@ -1,0 +1,20 @@
+meta {
+  name: get vendor/professional
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{vendorServiceUrl}}/profile/admin/:vendorId/profession
+  body: none
+  auth: inherit
+}
+
+params:path {
+  vendorId: f28325ba-04fe-4d49-963d-b022b1c9424d
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,25 @@
+meta {
+  name: get all vendors
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{vendorServiceUrl}}/profile/admin/vendors
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~onboardingStarted: true
+  ~verificationStatus: approved
+  ~vendorType: company
+  ~limit: 2
+  ~offset: 2
+  ~onboardingStatus: in_progress
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

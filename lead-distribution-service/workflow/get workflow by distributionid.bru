@@ -1,0 +1,20 @@
+meta {
+  name: get workflow by distributionid
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{leadDistributionUrl}}/distribution/:distributionId/workflow
+  body: none
+  auth: inherit
+}
+
+params:path {
+  distributionId: d16809d5-c553-4bd6-aad1-4bc07270d52a
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

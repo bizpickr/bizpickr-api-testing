@@ -1,0 +1,16 @@
+meta {
+  name: get all distributions
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{leadDistributionUrl}}/distribution
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,36 @@
+meta {
+  name: Update User Preferences
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{notificationServiceUrl}}/preferences/{{recipientType}}/{{recipientId}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "channels": {
+      "socket": {
+        "enabled": true,
+        "priority": 1
+      },
+      "email": {
+        "enabled": false,
+        "priority": 2
+      }
+    },
+    "categories": {
+      "LEAD": {
+        "enabled": true,
+        "channels": ["socket"]
+      },
+      "SYSTEM": {
+        "enabled": false,
+        "channels": []
+      }
+    }
+  }
+}

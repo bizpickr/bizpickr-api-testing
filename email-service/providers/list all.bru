@@ -1,0 +1,11 @@
+meta {
+  name: List All Providers
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{emailServiceUrl}}/providers
+  body: none
+  auth: inherit
+}

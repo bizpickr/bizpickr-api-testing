@@ -1,0 +1,22 @@
+meta {
+  name: resend email verification
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{authServiceUrl}}/resend-email-verification
+  body: none
+  auth: inherit
+}
+
+body:json {
+  {
+      "signupToken": "{{signupToken}}"
+    }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

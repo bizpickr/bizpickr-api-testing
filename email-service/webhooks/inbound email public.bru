@@ -1,0 +1,25 @@
+meta {
+  name: Inbound Email Webhook (Public)
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{emailServiceUrl}}/webhook/inbound
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "to": "{{replyAddress}}",
+    "from": "ramesh@neelnetworks.com",
+    "subject": "Re: Project Discussion - Lead #12345",
+    "text": "This is a test email reply from production server via SendGrid!",
+    "html": "<p>This is a test email reply from production server via SendGrid!</p>",
+    "message-id": "sendgrid_production_12345@neelnetworks.com",
+    "headers": {
+      "Message-ID": "sendgrid_production_12345@neelnetworks.com"
+    }
+  }
+}

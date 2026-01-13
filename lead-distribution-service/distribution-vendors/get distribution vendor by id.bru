@@ -1,0 +1,20 @@
+meta {
+  name: get distribution vendor by id
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{leadDistributionUrl}}/vendors/:distributionVendorId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  distributionVendorId: 8dee575b-989c-4fce-9b81-8978d006a858
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

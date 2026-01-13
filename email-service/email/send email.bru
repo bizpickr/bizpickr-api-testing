@@ -1,0 +1,29 @@
+meta {
+  name: Send Email
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{emailServiceUrl}}/email/send
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "to": "rameshtest151@gmail.com",
+    "subject": "Test Email from Production",
+    "template": "chat_message",
+    "data": {
+      "customerName": "Jane Customer",
+      "vendorName": "Ramesh Mahto",
+      "messageContent": "Hello! This is a test message.",
+      "leadTitle": "Project Discussion - Lead #12345",
+      "replyAddress": "{{replyAddress}}"
+    },
+    "options": {
+      "replyTo": "{{replyAddress}}"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+meta {
+  name: signup/vendor
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{authServiceUrl}}/signup/vendor
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "genuinevendor83@gmail.com",
+    "password": "Vi2305@$"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

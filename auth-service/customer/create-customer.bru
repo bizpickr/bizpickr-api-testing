@@ -1,0 +1,23 @@
+meta {
+  name: create/customer
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{authServiceUrl}}/signup/customer
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "rameshneel@networks.com"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Request Payout
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{paymentServiceUrl}}/api/v1/payment/payout/request
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "amount": 100,
+    "methodId": "pm_123",
+    "notes": "Withdrawal to bank"
+  }
+}

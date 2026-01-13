@@ -1,0 +1,16 @@
+meta {
+  name: get/profession
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{vendorServiceUrl}}/profile/profession
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

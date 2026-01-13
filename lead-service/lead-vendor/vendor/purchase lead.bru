@@ -1,0 +1,20 @@
+meta {
+  name: purchase lead
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{leadServiceUrl}}/purchase/:leadId/initiate
+  body: none
+  auth: inherit
+}
+
+params:path {
+  leadId: f79138aa-befa-4744-a4ff-47fd5fc9d2ad
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

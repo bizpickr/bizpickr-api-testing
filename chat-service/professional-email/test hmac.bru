@@ -1,0 +1,17 @@
+meta {
+  name: Test HMAC Verification
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{chatServiceUrl}}/professional-email/test-hmac
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "replyAddress": "{{replyAddress}}"
+  }
+}

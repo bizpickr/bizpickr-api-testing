@@ -1,0 +1,26 @@
+meta {
+  name: PayPal Webhook
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{paymentServiceUrl}}/api/v1/webhook/paypal
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "WH-123",
+    "event_type": "PAYMENT.CAPTURE.COMPLETED",
+    "resource": {
+      "id": "CAP-123",
+      "amount": {
+        "value": "50.00",
+        "currency_code": "USD"
+      },
+      "status": "COMPLETED"
+    }
+  }
+}

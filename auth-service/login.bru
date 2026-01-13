@@ -1,0 +1,124 @@
+meta {
+  name: login
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{authServiceUrl}}/login
+  body: json
+  auth: inherit
+}
+
+body:json {
+  // {
+  //   "email":"geniunecustomer2@gmail.com",
+  //   "password": "Vi2305@#"
+  // }
+  
+  // {
+  //   "email": "vishalbarve@gmail.com",
+  //   "password": "Vi2305@$"
+  // }
+  
+  {
+    "email": "genuinevendor90@gmail.com",
+    "password": "Vi2305@$"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+example {
+  name: example
+  
+  request: {
+    url: {{authServiceUrl}}/auth/login
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "email": "vendor@email.com",
+        "password": "Vi2305@$"
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      content-security-policy: default-src 'self';style-src 'self' 'unsafe-inline';script-src 'self';img-src 'self' data: https:;base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';object-src 'none';script-src-attr 'none';upgrade-insecure-requests
+      cross-origin-opener-policy: same-origin
+      cross-origin-resource-policy: same-origin
+      origin-agent-cluster: ?1
+      referrer-policy: no-referrer
+      strict-transport-security: max-age=31536000; includeSubDomains
+      x-content-type-options: nosniff
+      x-dns-prefetch-control: off
+      x-download-options: noopen
+      x-frame-options: SAMEORIGIN
+      x-permitted-cross-domain-policies: none
+      x-xss-protection: 0
+      vary: Origin, Accept-Encoding
+      access-control-allow-credentials: true
+      access-control-expose-headers: X-Correlation-ID
+      x-correlation-id: 5bbac100-4565-44cc-8cda-a7168895110a
+      x-trace-id: ed3482a0-7bd1-40f8-a9fb-d3b47f847f3d
+      ratelimit-policy: 100;w=900
+      ratelimit-limit: 100
+      ratelimit-remaining: 99
+      ratelimit-reset: 900
+      set-cookie: accessToken=eyJhbGciOiJSUzI1NiIsImtpZCI6Imp3ay1mY2M1ZmU2MC1mMTlhLTRmNDktYTdkZS1kMWJjZjk1M2ZiYTMifQ.eyJzdWIiOiIxZDY3NGVmNi1kNzdiLTRlNjAtODI4ZS05MTEwNmRjYTVkZTciLCJlbWFpbCI6InZlbmRvckBlbWFpbC5jb20iLCJyb2xlIjoidmVuZG9yIiwidHlwZSI6InZlbmRvciIsInN0YXR1cyI6ImFjdGl2ZSIsImVtYWlsVmVyaWZpZWQiOnRydWUsImp0aSI6IjlkZjQ3N2JjLTUyNDAtNDNkNC1iNGEwLTY2MzZkMzcxZTZlYSIsImlhdCI6MTc2MzQ2NDk1NSwiZXhwIjoxNzYzNDY1ODU1LCJpc3MiOiJhdXRoLXNlcnZpY2UiLCJhdWQiOiJiaXpwaWNrci1zZXJ2aWNlcyJ9.2SWA2WfxXHkW1hmdChnMZBTgvybaBYJRyRJ6ZGMvJ-wQF6q4DmY7uV0_PTfX2QlGIYfGGqvoLTa_ZgoXD-Uu5Jw7_dPzXlShwYathej2DVVcHSrkXNfsywQnJUe_iOgDtVOaW8F4WqckatkK64ZUoH5OOy8Ri292g00hF_MZPZiZOm0-X_PLYxuP4p9WAx-DC0OfZrmtbTtgDE-nnQbvWzFBq0hmzyO_4juKP-ToDbRaJ5mswLUN_4jBNp_g1xus69DI_RCfY_GZvVPqFViAXVbTrAwCsnvhO6REHiBPe2mIIaIy7LO2DJ1gseESVQxe0yyfGEGP3JV9RuOj2maaeA; Max-Age=2592000; Path=/; Expires=Thu, 18 Dec 2025 11:22:35 GMT; HttpOnly,refreshToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxZDY3NGVmNi1kNzdiLTRlNjAtODI4ZS05MTEwNmRjYTVkZTciLCJzdGF0dXMiOiJhY3RpdmUiLCJqdGkiOiJhNDgxNmRhNi1jYTg2LTQ3M2MtYmVmMy00NWUzY2Q1ZGIxODAiLCJpYXQiOjE3NjM0NjQ5NTUsImV4cCI6MTc2NDA2OTc1NSwiaXNzIjoiYXV0aC1zZXJ2aWNlIiwiYXVkIjoiYml6cGlja3Itc2VydmljZXMifQ.Xvr2UWRSY1FroEb3eT0yaiPRj6BOkcILU0OISIYE9H4; Max-Age=2592000; Path=/; Expires=Thu, 18 Dec 2025 11:22:35 GMT; HttpOnly
+      content-type: application/json; charset=utf-8
+      content-length: 727
+      etag: W/"2d7-JXp674pZwdRc1d5g61d7qpp+w64"
+      date: Tue, 18 Nov 2025 11:22:35 GMT
+      connection: keep-alive
+      keep-alive: timeout=5
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "statusCode": 200,
+          "data": {
+            "id": "1d674ef6-d77b-4e60-828e-91106dca5de7",
+            "email": "vendor@email.com",
+            "emailVerified": true,
+            "emailVerifiedAt": "2025-11-11T12:46:40.000Z",
+            "status": "active",
+            "statusChangedAt": "2025-11-11T12:46:40.000Z",
+            "statusChangedBy": null,
+            "failedLoginAttempts": 0,
+            "lockedUntil": null,
+            "lastLoginAt": "2025-11-18T11:22:35.764Z",
+            "lastLoginIp": "unknown",
+            "loginCount": 26,
+            "passwordChangedAt": "2025-11-11T12:45:22.000Z",
+            "role": "vendor",
+            "type": "vendor",
+            "createdBy": null,
+            "updatedBy": null,
+            "suspendedAt": null,
+            "suspendedBy": null,
+            "suspensionReason": null,
+            "createdAt": "2025-11-11T12:45:22.000Z",
+            "updatedAt": "2025-11-18T11:22:35.765Z",
+            "deletedAt": null
+          },
+          "message": "Login successful",
+          "success": true,
+          "timestamp": "2025-11-18T11:22:35.864Z"
+        }
+      '''
+    }
+  }
+}

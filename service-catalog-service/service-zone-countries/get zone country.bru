@@ -1,0 +1,20 @@
+meta {
+  name: get zone country
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{serviceCatalogUrl}}/zone-countries/:zoneCountryId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  zoneCountryId: e2f8ed5c-3236-4c28-91a6-0b786bda41b2
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

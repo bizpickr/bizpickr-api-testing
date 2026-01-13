@@ -1,0 +1,20 @@
+meta {
+  name: get/vendor/services
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{vendorServiceUrl}}/service-offering/admin/:vendorId/services
+  body: none
+  auth: inherit
+}
+
+params:path {
+  vendorId: 807c99b4-28c5-4ce1-a224-f083e0177a56
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

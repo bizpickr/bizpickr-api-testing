@@ -1,0 +1,46 @@
+meta {
+  name: create lead
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{leadServiceUrl}}/admin/create
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "requirement": {
+      "id": "req_12345679",
+      "serviceId": "cat_web_dev",
+      "serviceName": "Web Development",
+      "selectedAddons": ["seo-optimization", "mobile-responsive"],
+      "budgetType": "fixed",
+      "budget": 2500,
+      "country": "United States",
+      "city": "New York",
+      "locationType": "specific",
+      "vendorType": "both",
+      "noOfVendors": 5,
+      "description": "I need a modern e-commerce website with payment integration, user authentication, and admin dashboard. The site should be responsive and SEO optimized.",
+      "estimatedTime": "ASAP"
+    },
+    "customer": {
+      "id": "user_987654321",
+      "country": "United States", 
+      "city": "New York",
+      "nickname": "TechStartup2024"
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

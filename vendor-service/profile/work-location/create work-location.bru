@@ -1,0 +1,26 @@
+meta {
+  name: create work-location
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{vendorServiceUrl}}/profile/work-location
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "country": "India",
+    "city": "Mumbai",
+    "address": "123 Main Street, Apartment 4B",
+    "postalCode": "94102",
+    "ISOCountryCode": "IND"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

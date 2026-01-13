@@ -1,0 +1,11 @@
+meta {
+  name: Download File
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{fileServiceUrl}}/{{fileId}}/download
+  body: none
+  auth: inherit
+}

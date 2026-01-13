@@ -1,0 +1,20 @@
+meta {
+  name: activate service category
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{serviceCatalogUrl}}/:serviceId/activate
+  body: none
+  auth: inherit
+}
+
+params:path {
+  serviceId: f03b5548-2fdd-484e-89f0-bb788671ce5f
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

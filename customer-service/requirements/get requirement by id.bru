@@ -1,0 +1,20 @@
+meta {
+  name: get requirement by id
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{customerServiceUrl}}/requirements/:requirementId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  requirementId: a54b3a0b-dd7c-4c75-89fb-a101ae3c9868
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

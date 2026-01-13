@@ -1,0 +1,78 @@
+meta {
+  name: create service category
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{serviceCatalogUrl}}/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  // 1. Mobile Development
+  // {
+  //   "name": "Mobile App Development",
+  //   "description": "Native and cross-platform mobile application development for iOS and Android",
+  //   "hourlyPrice": 75,
+  //   "fixedPrice": 5000,
+  //   "coinsToPay": 100
+  // }
+  
+  // 2. Web Development
+  // {
+  //   "name": "Web Development",
+  //   "description": "Full-stack web development including frontend, backend, and database design",
+  //   "hourlyPrice": 60,
+  //   "fixedPrice": 4000,
+  //   "coinsToPay": 80
+  // }
+  
+  // 3. Software Engineering
+  // {
+  //   "name": "Software Engineering",
+  //   "description": "Enterprise software development, system architecture, and technical consulting",
+  //   "hourlyPrice": 85,
+  //   "fixedPrice": 6000,
+  //   "coinsToPay": 120
+  // }
+  
+  // 4. UI/UX Design
+  // {
+  //   "name": "UI/UX Design",
+  //   "description": "User interface and user experience design, wireframing, and prototyping",
+  //   "hourlyPrice": 55,
+  //   "fixedPrice": 3500,
+  //   "coinsToPay": 70
+  // }
+  
+  // 5. Graphic Design
+  // {
+  //   "name": "Graphic Design",
+  //   "description": "Logo design, branding, marketing materials, and visual identity creation",
+  //   "hourlyPrice": 45,
+  //   "fixedPrice": 2500,
+  //   "coinsToPay": 50
+  // }
+  
+  // 6. testing
+  {
+    "name": "farming",
+    "description": "farming service",
+    "hourlyPrice": 45,
+    "fixedPrice": 2500,
+    "coinsToPay": 50
+  }
+}
+
+script:post-response {
+  const { data } = res.body;
+  if (!data || !data.id) throw Error("no service id found");
+  bru.setEnvVar("serviceId", data.id);
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

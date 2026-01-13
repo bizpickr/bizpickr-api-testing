@@ -1,0 +1,23 @@
+meta {
+  name: get basic
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{vendorServiceUrl}}/profile/basic
+  body: none
+  auth: inherit
+}
+
+headers {
+  x-auth-id: 3e9b1482-8266-47e0-8161-956542b5029c
+  x-user-email: vendor@gmail.com
+  x-user-role: vendor
+  x-user-type: vendor
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,20 @@
+meta {
+  name: reset/profession/verification
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{vendorServiceUrl}}/profile/admin/:vendorId/profession/reset
+  body: none
+  auth: inherit
+}
+
+params:path {
+  vendorId: b2f22021-c00e-46c4-9035-bc56e6cdc8de
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,20 @@
+meta {
+  name: retry outbox
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{customerServiceUrl}}/outbox/retry/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 4ebb08a6-0b59-4c05-a4d4-e21b4d22923e
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

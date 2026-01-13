@@ -1,0 +1,22 @@
+meta {
+  name: get all leads
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{leadServiceUrl}}/admin/all-leads
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~vendorType: company
+  ~leadType: 
+  ~status: PUBLISHING
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

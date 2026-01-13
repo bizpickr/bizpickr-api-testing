@@ -1,0 +1,20 @@
+meta {
+  name: get vendors by lead
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{leadServiceUrl}}/:id/vendors
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 3e3bfaae-15bd-4125-adb3-03812338926f
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

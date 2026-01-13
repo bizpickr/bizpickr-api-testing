@@ -1,0 +1,20 @@
+meta {
+  name: get lead by id
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{leadServiceUrl}}/:leadId
+  body: json
+  auth: none
+}
+
+params:path {
+  leadId: dc16df58-25e5-4932-9ef8-9ad5b1c8935b
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

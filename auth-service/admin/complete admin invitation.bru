@@ -1,0 +1,23 @@
+meta {
+  name: complete admin invitation
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{authServiceUrl}}/admin/complete
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "inviteToken": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInN1cGVyQWRtaW5JZCI6IjZiNjA5MWJkLWE0ZDEtNGE2My1hMmEyLTQ4YzQyN2ZmNmYwNiIsInR5cGUiOiJJTlZJVEUiLCJqdGkiOiI4Y2MwMjlhZS1mNWRjLTRhMGUtYjQ1Ny0xMjg2OGU4NzdmYmIiLCJpYXQiOjE3NjQ1OTgwNzQsImV4cCI6MTc2NDU5ODY3NCwiaXNzIjoiYXV0aC1zZXJ2aWNlIiwiYXVkIjoiYml6cGlja3Itc2VydmljZXMifQ.0HutuM4MmTFqRWOMmBR0oLWsJiBCwrHCJh5jnd08zu4",
+    "password": "Vi2305@$"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

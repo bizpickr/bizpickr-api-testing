@@ -1,0 +1,20 @@
+meta {
+  name: Test Webhook Processing
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{chatServiceUrl}}/professional-email/test-webhook
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "to": "{{replyAddress}}",
+    "from": "test@example.com",
+    "subject": "Test",
+    "text": "Test message"
+  }
+}

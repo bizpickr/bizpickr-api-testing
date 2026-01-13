@@ -1,0 +1,11 @@
+meta {
+  name: Block Channel
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{chatServiceUrl}}/channels/{{channelId}}/block
+  body: none
+  auth: inherit
+}

@@ -1,0 +1,24 @@
+meta {
+  name: purchase a service
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{vendorServiceUrl}}/service-offering/services/purchase
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "serviceId": "ea56e788-ab99-47ba-aa3f-f7c5a51a9876",
+    "hourlyPrice": 75.00,
+    "fixedPrice": 5000.00
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

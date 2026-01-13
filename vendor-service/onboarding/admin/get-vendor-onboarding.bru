@@ -1,0 +1,20 @@
+meta {
+  name: get/vendor/onboarding
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{vendorServiceUrl}}/onboarding/admin/:vendorId/onboarding
+  body: none
+  auth: inherit
+}
+
+params:path {
+  vendorId: e2139296-7f48-4e51-912f-f30f73d04ccb
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

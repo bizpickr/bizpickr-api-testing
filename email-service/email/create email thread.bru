@@ -1,0 +1,22 @@
+meta {
+  name: Create Email Thread
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{emailServiceUrl}}/email/thread/create
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "leadId": "lead_12345",
+    "customerId": "customer_11111",
+    "customerEmail": "rameshtest151@gmail.com",
+    "vendorId": "vendor_67890",
+    "vendorEmail": "ramesh@neelnetworks.com",
+    "channelId": "{{channelId}}"
+  }
+}

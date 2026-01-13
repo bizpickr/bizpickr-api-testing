@@ -1,0 +1,26 @@
+meta {
+  name: update pricing zone
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{serviceCatalogUrl}}/pricing-zones/:zoneId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  zoneId: da1e7c96-de36-4409-9619-04deedaffb55
+}
+
+body:json {
+  {
+    "name": "north zone"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,11 @@
+meta {
+  name: Close Channel
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{chatServiceUrl}}/channels/{{channelId}}/close
+  body: none
+  auth: inherit
+}

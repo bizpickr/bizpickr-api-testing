@@ -1,0 +1,27 @@
+meta {
+  name: update addon
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{serviceCatalogUrl}}/addons/:addonId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  addonId: a176ef10-86f3-465f-b94e-d40092295291
+}
+
+body:json {
+  {
+    "name": "FigmaJam",
+    "description": "some description"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

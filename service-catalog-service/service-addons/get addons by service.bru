@@ -1,0 +1,26 @@
+meta {
+  name: get addons by service
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{serviceCatalogUrl}}/addons/service/:serviceId?limit=1&offset=1&all=true
+  body: none
+  auth: inherit
+}
+
+params:query {
+  limit: 1
+  offset: 1
+  all: true
+}
+
+params:path {
+  serviceId: 723cea57-0288-4ace-b073-f1a8ad1647a0
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

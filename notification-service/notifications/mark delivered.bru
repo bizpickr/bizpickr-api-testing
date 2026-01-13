@@ -1,0 +1,19 @@
+meta {
+  name: Mark as Delivered
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{notificationServiceUrl}}/mark-delivered
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "notificationIds": [
+      "{{notificationId}}"
+    ]
+  }
+}

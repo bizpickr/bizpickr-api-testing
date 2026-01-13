@@ -1,0 +1,17 @@
+meta {
+  name: Upload File
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{fileServiceUrl}}/upload
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  file: @file()
+  uploadedBy: {"id":"vendor-123","type":"vendor"}
+  context: {"service":"vendor-service","entityId":"vendor-123","entityType":"compliance","documentType":"pan_card"}
+}

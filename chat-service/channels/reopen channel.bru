@@ -1,0 +1,11 @@
+meta {
+  name: Reopen Channel
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{chatServiceUrl}}/channels/{{channelId}}/reopen
+  body: none
+  auth: inherit
+}

@@ -1,0 +1,16 @@
+meta {
+  name: get all workflows
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{leadDistributionUrl}}/workflow
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

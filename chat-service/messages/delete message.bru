@@ -1,0 +1,11 @@
+meta {
+  name: Delete Message
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{chatServiceUrl}}/messages/{{messageId}}
+  body: none
+  auth: inherit
+}

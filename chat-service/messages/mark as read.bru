@@ -1,0 +1,11 @@
+meta {
+  name: Mark Message as Read
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{chatServiceUrl}}/messages/{{messageId}}/read
+  body: none
+  auth: inherit
+}

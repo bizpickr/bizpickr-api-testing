@@ -1,0 +1,11 @@
+meta {
+  name: Get Channel Sync Stats
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{chatServiceUrl}}/sync/channel/{{channelId}}/stats
+  body: none
+  auth: inherit
+}

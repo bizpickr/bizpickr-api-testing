@@ -1,0 +1,22 @@
+meta {
+  name: verify/customer
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{authServiceUrl}}/verify/customer
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "otp": 444078
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

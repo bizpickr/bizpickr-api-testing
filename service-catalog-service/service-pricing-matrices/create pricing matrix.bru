@@ -1,0 +1,25 @@
+meta {
+  name: create pricing matrix
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{serviceCatalogUrl}}/pricing-matrices/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "zoneId": "{{zoneId}}",
+    "serviceId": "{{serviceId}}",
+    "vendorType": "company",
+    "coinsToPay": 500
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

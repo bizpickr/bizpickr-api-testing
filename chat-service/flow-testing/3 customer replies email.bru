@@ -1,0 +1,22 @@
+meta {
+  name: 3. Customer Replies via Email (Webhook)
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{emailServiceUrl}}/api/v1/email-service/webhook/inbound
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "to": "{{replyAddress}}",
+    "from": "rameshtest151@gmail.com",
+    "subject": "Re: Project Discussion - Lead #12345",
+    "text": "Hi! Yes, let's discuss. I need a website with user authentication.",
+    "html": "<p>Hi! Yes, let's discuss. I need a website with user authentication.</p>",
+    "message-id": "customer_reply_12345@gmail.com"
+  }
+}

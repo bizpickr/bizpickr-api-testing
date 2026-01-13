@@ -1,0 +1,22 @@
+meta {
+  name: update work-location
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{vendorServiceUrl}}/profile/work-location
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "country": "Asia"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

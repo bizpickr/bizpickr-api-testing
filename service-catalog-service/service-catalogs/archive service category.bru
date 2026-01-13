@@ -1,0 +1,20 @@
+meta {
+  name: archive service category
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{serviceCatalogUrl}}/:serviceId/archive
+  body: none
+  auth: inherit
+}
+
+params:path {
+  serviceId: 
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

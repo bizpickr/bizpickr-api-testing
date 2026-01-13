@@ -1,0 +1,11 @@
+meta {
+  name: Force Sync Channel
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{chatServiceUrl}}/sync/channel/{{channelId}}/force
+  body: none
+  auth: inherit
+}

@@ -1,0 +1,11 @@
+meta {
+  name: Delete Template
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{emailServiceUrl}}/templates/template_name
+  body: none
+  auth: inherit
+}

@@ -1,0 +1,11 @@
+meta {
+  name: Get Channel By ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{chatServiceUrl}}/channels/{{channelId}}
+  body: none
+  auth: inherit
+}

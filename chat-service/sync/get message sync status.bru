@@ -1,0 +1,11 @@
+meta {
+  name: Get Message Sync Status
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{chatServiceUrl}}/sync/message/{{messageId}}/status
+  body: none
+  auth: inherit
+}

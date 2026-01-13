@@ -1,0 +1,15 @@
+meta {
+  name: get all onboardings
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{vendorServiceUrl}}/onboarding/admin/onboardings
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,16 @@
+meta {
+  name: get all worksamples
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{vendorServiceUrl}}/work-sample/admin/all
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

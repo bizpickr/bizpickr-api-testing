@@ -1,0 +1,27 @@
+meta {
+  name: verify compliance
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{vendorServiceUrl}}/compliance/admin/compliance/:complianceId/verify
+  body: json
+  auth: inherit
+}
+
+params:path {
+  complianceId: 1f415876-84a2-49a6-a2fd-0e855b9d3771
+}
+
+body:json {
+  {
+    "action": "approve",
+    "notes": "approved"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,20 @@
+meta {
+  name: get/vendor/verification
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{vendorServiceUrl}}/verification/admin/:vendorId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  vendorId: bce34667-d930-44ea-b258-a96ec2ead750
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Inbound Email Webhook
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{chatServiceUrl}}/webhook/inbound
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "to": "{{replyAddress}}",
+    "from": "ramesh@neelnetworks.com",
+    "subject": "Re: Project Discussion - Lead #12345",
+    "text": "This is a test email reply from production server!",
+    "html": "<p>This is a test email reply from production server!</p>",
+    "message-id": "test_production_12345@neelnetworks.com",
+    "headers": {
+      "Message-ID": "test_production_12345@neelnetworks.com"
+    }
+  }
+}

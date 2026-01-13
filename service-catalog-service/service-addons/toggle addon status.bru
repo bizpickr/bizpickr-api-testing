@@ -1,0 +1,20 @@
+meta {
+  name: toggle addon status
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{serviceCatalogUrl}}/addons/:addonId/status
+  body: none
+  auth: inherit
+}
+
+params:path {
+  addonId: 9be48631-bc2e-4ebe-94d8-1ebb32709781
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

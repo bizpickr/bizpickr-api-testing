@@ -1,0 +1,16 @@
+meta {
+  name: get all addons
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{serviceCatalogUrl}}/addons/
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

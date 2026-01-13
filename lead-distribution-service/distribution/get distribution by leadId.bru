@@ -1,0 +1,20 @@
+meta {
+  name: get distribution by leadId
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{leadDistributionUrl}}/distribution/lead/:leadId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  leadId: 1538fc91-4360-4d00-893c-fa71ad75546d
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

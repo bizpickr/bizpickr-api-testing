@@ -1,0 +1,26 @@
+meta {
+  name: Stripe Webhook
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{paymentServiceUrl}}/api/v1/webhook/stripe
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "evt_123",
+    "type": "payment_intent.succeeded",
+    "data": {
+      "object": {
+        "id": "pi_123",
+        "amount": 5000,
+        "currency": "usd",
+        "status": "succeeded"
+      }
+    }
+  }
+}

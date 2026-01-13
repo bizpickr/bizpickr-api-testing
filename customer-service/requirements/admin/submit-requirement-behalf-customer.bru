@@ -1,0 +1,45 @@
+meta {
+  name: submit/requirement/behalf/customer
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{customerServiceUrl}}/requirements/admin/:customerId/submit-requirement
+  body: json
+  auth: inherit
+}
+
+params:path {
+  customerId: d175544d-8645-41fe-83d2-7bc9cd7ccec6
+}
+
+body:json {
+  {
+    "serviceId": "1feabff2-7cd2-4d37-84e7-f34749afe625",
+    "serviceName": "Pro Analytics",
+    "selectedAddons": [
+      {
+        "addonId": "addon-responsive-001",
+        "addonName": "Responsive Design"
+      },
+      {
+        "addonId": "addon-seo-001",
+        "addonName": "SEO Optimization"
+      }
+    ],
+    "budgetType": "hourly",
+    "budget": 100,
+    "country": "United Kingdom",
+    "city": "Bristol",
+    "vendorType": "freelancer",
+    "noOfVendors": 3,
+    "estimatedTime": "ASAP",
+    "description": "I need a modern e-commerce website with user authentication, payment integration, and admin dashboard. The site should be mobile-responsive and optimized for search engines."
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,20 @@
+meta {
+  name: get matrix by zone
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{serviceCatalogUrl}}/pricing-matrices/zone/:zoneId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  zoneId: 44d34903-2758-453e-910c-66250276309a
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

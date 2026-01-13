@@ -1,0 +1,11 @@
+meta {
+  name: Get Email Stats
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{emailServiceUrl}}/email/track/{{messageId}}/stats
+  body: none
+  auth: inherit
+}

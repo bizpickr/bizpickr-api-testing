@@ -1,0 +1,20 @@
+meta {
+  name: toggle zone status
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{serviceCatalogUrl}}/pricing-zones/:zoneId/toggle-status
+  body: none
+  auth: inherit
+}
+
+params:path {
+  zoneId: {{zoneId}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

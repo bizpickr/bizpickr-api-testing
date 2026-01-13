@@ -1,0 +1,19 @@
+meta {
+  name: Sync User Presence
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{chatServiceUrl}}/sync/presence
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "userId": "vendor_67890",
+    "userType": "vendor",
+    "status": "online"
+  }
+}

@@ -1,0 +1,11 @@
+meta {
+  name: List All Templates
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{emailServiceUrl}}/templates
+  body: none
+  auth: inherit
+}

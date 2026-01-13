@@ -1,0 +1,11 @@
+meta {
+  name: Get Payment Status
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/status/{{paymentIntentId}}
+  body: none
+  auth: inherit
+}

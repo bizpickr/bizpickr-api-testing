@@ -1,0 +1,27 @@
+meta {
+  name: verify/basic
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{vendorServiceUrl}}/profile/admin/:vendorId/basic/verify
+  body: json
+  auth: inherit
+}
+
+params:path {
+  vendorId: b2f22021-c00e-46c4-9035-bc56e6cdc8de
+}
+
+body:json {
+  {
+    "action": "approve",
+    "notes": "all good"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

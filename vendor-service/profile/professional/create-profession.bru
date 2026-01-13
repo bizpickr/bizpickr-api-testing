@@ -1,0 +1,51 @@
+meta {
+  name: create/profession
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{vendorServiceUrl}}/profile/profession
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "businessName": "Acme Solutions Pvt Ltd",
+    "bio": "Enterprise software, cloud consulting and managed services focused on mid-to-large organizations.",
+    "websiteUrl": "https://www.acmesolutions.example",
+    "companySize": "51-200",
+    "foundedYear": 2015,
+    "companyType": "Corporation",
+    "industry": "Information Technology",
+    "keyPersonnel": [
+      {
+        "name": "Jane Doe",
+        "role": "Head of Partnerships",
+        "profile": "15+ years in enterprise partnerships and channel sales."
+      },
+      {
+        "name": "John Smith",
+        "role": "CTO",
+        "profile": "Leads platform engineering and cloud architecture."
+      }
+    ],
+    "businessRegistrationNumber": "CIN123456789",
+    "taxIdentificationNumber": "GSTIN09ABCDE1234F1Z5",
+    "certifications": [
+      {
+        "cert_name": "ISO 9001",
+        "issuer": "Bureau Veritas",
+        "achievement_date": "2001-09-01",
+        "file_path": "https://restcountries.com/v3.1/name/india",
+        "description": "Quality management systems certification."
+      }
+    ]
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

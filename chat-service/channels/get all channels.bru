@@ -1,0 +1,11 @@
+meta {
+  name: Get All Channels
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{chatServiceUrl}}/channels?userId=vendor_67890&userType=vendor
+  body: none
+  auth: inherit
+}

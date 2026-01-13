@@ -1,0 +1,11 @@
+meta {
+  name: Get Template stats
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{notificationApiUrl}}/v1/templates/stats
+  body: none
+  auth: inherit
+}

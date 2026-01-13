@@ -1,0 +1,17 @@
+meta {
+  name: Validate Reply Address
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{chatServiceUrl}}/professional-email/validate-reply-address
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "replyAddress": "{{replyAddress}}"
+  }
+}

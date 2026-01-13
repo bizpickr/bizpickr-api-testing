@@ -1,0 +1,20 @@
+meta {
+  name: resume workflow
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{leadDistributionUrl}}/workflow/:workflowId/resume
+  body: none
+  auth: inherit
+}
+
+params:path {
+  workflowId: 80848be9-431b-4de9-a857-b92c369dd88a
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

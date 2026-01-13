@@ -1,0 +1,26 @@
+meta {
+  name: switch zone country
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{serviceCatalogUrl}}/zone-countries/:zoneCountryId/switch
+  body: json
+  auth: inherit
+}
+
+params:path {
+  zoneCountryId: abd384f1-9937-4e55-a663-08dfe6fd6560
+}
+
+body:json {
+  {
+    "newZoneId": "80f4156b-ea35-43ef-bbd0-f506e6975a11"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

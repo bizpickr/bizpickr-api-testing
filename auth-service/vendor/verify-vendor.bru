@@ -1,0 +1,23 @@
+meta {
+  name: verify/vendor
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{authServiceUrl}}/verify/vendor
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "otp": "544344"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

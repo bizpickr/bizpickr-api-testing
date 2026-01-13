@@ -1,0 +1,16 @@
+meta {
+  name: refresh tokens
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{authServiceUrl}}/refresh-tokens
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

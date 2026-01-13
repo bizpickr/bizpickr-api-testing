@@ -1,0 +1,11 @@
+meta {
+  name: Get Payout Methods
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{paymentServiceUrl}}/api/v1/payment/payout/methods
+  body: none
+  auth: inherit
+}
