@@ -17,3 +17,13 @@ body:json {
     "notes": "Withdrawal to bank"
   }
 }
+
+assert {
+  status: 501
+  jsonpath: $.error {
+    "contains": "Not implemented"
+  }
+  jsonpath: $.correlationId {
+    "exists": true
+  }
+}

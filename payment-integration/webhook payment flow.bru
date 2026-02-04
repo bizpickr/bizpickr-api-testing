@@ -1,0 +1,136 @@
+meta {
+  name: Webhook Payment Flow Test
+  type: http
+  seq: 2
+}
+
+### Step 1: Create Payment Intent and Get Details
+post {
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/intent
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "amount": 15,
+    "currency": "USD",
+    "paymentMethod": "stripe",
+    "metadata": {
+      "test": "webhook_flow_test",
+      "expected_coins": 15
+    }
+  }
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+}
+
+vars {
+  "paymentRecordId": $.data.paymentRecordId
+  "expectedCoins": $.data.coinsToReceive
+}
+
+### Step 2: Check Initial Wallet Balance
+get {
+  url: {{vendorServiceUrl}}/wallet
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+}
+
+vars {
+  "initialBalance": $.data.balance
+  "initialCredits": $.data.totalCredits
+}
+
+### Step 3: Get Test Webhook Payload
+get {
+  url: {{paymentServiceUrl}}/api/v1/webhook/test/stripe
+  body: none
+  auth: none
+}
+
+assert {
+  status: 200
+  jsonpath: $.payload.id {
+    "exists": true
+  }
+}
+
+vars {
+  "testWebhook": $.payload
+}
+
+### Step 4: Send Test Webhook
+post {
+  url: {{paymentServiceUrl}}/api/v1/webhook/stripe
+  headers {
+    "stripe-signature": "t=1234567890,v1=test_signature"
+  }
+  body: json
+  auth: none
+}
+
+body:json {{testWebhook}}
+
+assert {
+  status: 200
+  jsonpath: $.received {
+    "eq": true
+  }
+}
+
+### Step 5: Wait for Processing (in real scenario)
+# Note: In actual testing, you might need to wait a few seconds
+# for inbox/outbox processing to complete
+
+### Step 6: Verify Wallet Was Credited
+get {
+  url: {{vendorServiceUrl}}/wallet
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data.balance {
+    "eq": {{initialBalance}} + {{expectedCoins}}
+  }
+  jsonpath: $.data.totalCredits {
+    "eq": {{initialCredits}} + {{expectedCoins}}
+  }
+}
+
+### Step 7: Check Transaction History
+get {
+  url: {{vendorServiceUrl}}/wallet/transactions?referenceType=coin_purchase
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data.docs[*].transactionType {
+    "allEq": "credit"
+  }
+  jsonpath: $.data.docs[*].amount {
+    "allEq": {{expectedCoins}}
+  }
+}

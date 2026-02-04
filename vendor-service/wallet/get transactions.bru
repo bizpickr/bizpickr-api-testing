@@ -1,0 +1,41 @@
+meta {
+  name: Get Wallet Transactions
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{vendorServiceUrl}}/wallet/transactions
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data.docs {
+    "exists": true
+  }
+  jsonpath: $.data.pagination.total {
+    "gte": 0
+  }
+}
+
+### Get completed transactions only
+get {
+  url: {{vendorServiceUrl}}/wallet/transactions?status=completed
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data.docs[*].status {
+    "allEq": "completed"
+  }
+}

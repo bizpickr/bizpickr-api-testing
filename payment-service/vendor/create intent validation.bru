@@ -1,0 +1,128 @@
+meta {
+  name: Create Payment Intent - Validation Tests
+  type: http
+  seq: 3
+}
+
+### Test 1: Invalid Amount (too low)
+post {
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/intent
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "amount": 1,
+    "currency": "USD",
+    "paymentMethod": "stripe"
+  }
+}
+
+assert {
+  status: 400
+  jsonpath: $.success {
+    "eq": false
+  }
+  jsonpath: $.error.code {
+    "eq": "VALIDATION_ERROR"
+  }
+}
+
+### Test 2: Invalid Amount (too high)
+post {
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/intent
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "amount": 2000,
+    "currency": "USD",
+    "paymentMethod": "stripe"
+  }
+}
+
+assert {
+  status: 400
+  jsonpath: $.success {
+    "eq": false
+  }
+  jsonpath: $.error.code {
+    "eq": "VALIDATION_ERROR"
+  }
+}
+
+### Test 3: Invalid Payment Method
+post {
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/intent
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "amount": 50,
+    "currency": "USD",
+    "paymentMethod": "invalid_method"
+  }
+}
+
+assert {
+  status: 400
+  jsonpath: $.success {
+    "eq": false
+  }
+  jsonpath: $.error.code {
+    "eq": "VALIDATION_ERROR"
+  }
+}
+
+### Test 4: Invalid Currency
+post {
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/intent
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "amount": 50,
+    "currency": "EUR",
+    "paymentMethod": "stripe"
+  }
+}
+
+assert {
+  status: 400
+  jsonpath: $.success {
+    "eq": false
+  }
+  jsonpath: $.error.code {
+    "eq": "VALIDATION_ERROR"
+  }
+}
+
+### Test 5: Missing Required Fields
+post {
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/intent
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "amount": 50
+  }
+}
+
+assert {
+  status: 400
+  jsonpath: $.success {
+    "eq": false
+  }
+  jsonpath: $.error.code {
+    "eq": "VALIDATION_ERROR"
+  }
+}

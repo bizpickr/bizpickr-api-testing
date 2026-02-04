@@ -12,8 +12,20 @@ post {
 
 body:json {
   {
-    "paymentId": "pay_123",
-    "amount": 50,
-    "reason": "Customer requested refund"
+    "originalTransactionId": "{{paymentRecordId}}",
+    "refundAmount": 50,
+    "currency": "usd",
+    "refundReason": "customer_request",
+    "refundDescription": "Customer requested refund"
+  }
+}
+
+assert {
+  status: 501
+  jsonpath: $.error {
+    "contains": "Not implemented"
+  }
+  jsonpath: $.correlationId {
+    "exists": true
   }
 }

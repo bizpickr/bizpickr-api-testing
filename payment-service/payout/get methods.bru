@@ -9,3 +9,19 @@ get {
   body: none
   auth: inherit
 }
+
+assert {
+  status: 200
+  jsonpath: $.methods {
+    "isArray": true
+  }
+  jsonpath: $.methods {
+    "contains": "paypal"
+  }
+  jsonpath: $.methods {
+    "contains": "stripe_connect"
+  }
+  jsonpath: $.correlationId {
+    "exists": true
+  }
+}

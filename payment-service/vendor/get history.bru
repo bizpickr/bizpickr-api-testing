@@ -1,11 +1,50 @@
 meta {
   name: Get Payment History
   type: http
-  seq: 4
+  seq: 5
 }
 
 get {
-  url: {{paymentServiceUrl}}/api/v1/payment/vendor/history
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/history?page=1&limit=10
   body: none
   auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data {
+    "exists": true
+  }
+  jsonpath: $.data.docs {
+    "isArray": true
+  }
+  jsonpath: $.data.page {
+    "exists": true
+  }
+  jsonpath: $.data.totalDocs {
+    "gte": 0
+  }
+  jsonpath: $.message {
+    "contains": "retrieved successfully"
+  }
+}
+
+### Get Payment History with Status Filter
+get {
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/history?status=completed&page=1&limit=10
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data.docs {
+    "isArray": true
+  }
 }

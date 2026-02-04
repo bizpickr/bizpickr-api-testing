@@ -1,0 +1,80 @@
+meta {
+  name: "Test Chat Room Events"
+  type: websocket
+  seq: 3
+}
+
+websocket {
+  url: {{notificationServiceUrl}}/chat
+  protocols: ["websocket"]
+}
+
+on:open {
+  log("🔌 Connecting to chat namespace...");
+
+  // Authenticate for chat
+  send {
+    "event": "user:authenticate",
+    "data": {
+      "userId": "vendor_123",
+      "userType": "vendor",
+      "token": "{{vendorToken}}"
+    }
+  }
+}
+
+on:message {
+  if (data.event === "user:authenticated") {
+    log("✅ Chat authentication successful");
+
+    // Join chat channel
+    send {
+      "event": "chat:join_channel",
+      "data": {
+        "channelId": "lead_123_chat",
+        "userId": "vendor_123"
+      }
+    }
+
+    log("💬 Joined chat channel: lead_123_chat");
+  }
+
+  if (data.event === "chat:message") {
+    log("💬 CHAT MESSAGE RECEIVED:");
+    log(data.data);
+  }
+
+  if (data.event === "chat:typing_start") {
+    log("✍️  User started typing:");
+    log(data.data);
+  }
+
+  if (data.event === "chat:typing_stop") {
+    log("⏹️  User stopped typing:");
+    log(data.data);
+  }
+
+  if (data.event === "chat:user_joined") {
+    log("👤 User joined channel:");
+    log(data.data);
+  }
+
+  if (data.event === "chat:user_left") {
+    log("👋 User left channel:");
+    log(data.data);
+  }
+
+  if (data.event === "user:authentication_failed") {
+    log("❌ Chat authentication failed:");
+    log(data.data);
+  }
+}
+
+on:close {
+  log("🔌 Chat socket connection closed");
+}
+
+on:error {
+  log("❌ Chat socket error:");
+  log(error);
+}

@@ -1,0 +1,56 @@
+meta {
+  name: Inbox Status Monitoring
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{paymentServiceUrl}}/health
+  body: none
+  auth: none
+}
+
+assert {
+  status: 200
+  jsonpath: $.status {
+    "eq": "OK"
+  }
+  jsonpath: $.services.inbox {
+    "exists": true
+  }
+  jsonpath: $.services.inbox.healthy {
+    "eq": true
+  }
+  jsonpath: $.services.inbox.pending {
+    "gte": 0
+  }
+  jsonpath: $.services.inbox.processing {
+    "gte": 0
+  }
+  jsonpath: $.services.inbox.stuck {
+    "eq": 0
+  }
+  jsonpath: $.services.outbox {
+    "exists": true
+  }
+  jsonpath: $.services.outbox.healthy {
+    "eq": true
+  }
+}
+
+### Check if inbox processing is working via metrics
+get {
+  url: {{paymentServiceUrl}}/metrics
+  body: none
+  auth: none
+}
+
+assert {
+  status: 200
+  body {
+    "contains": "inbox"
+  }
+  body {
+    "contains": "outbox"
+  }
+}

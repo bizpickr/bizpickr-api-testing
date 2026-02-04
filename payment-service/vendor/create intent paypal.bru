@@ -1,7 +1,7 @@
 meta {
-  name: Create Payment Intent - Stripe
+  name: Create Payment Intent - PayPal
   type: http
-  seq: 1
+  seq: 2
 }
 
 post {
@@ -12,21 +12,21 @@ post {
 
 body:json {
   {
-    "amount": 50,
+    "amount": 75,
     "currency": "usd",
-    "paymentMethod": "stripe",
+    "paymentMethod": "paypal",
     "metadata": {
-      "package": "Starter Pack",
-      "coins": 50
+      "package": "Pro Pack",
+      "coins": 75
     }
   }
 }
 
 vars:post-response {
-  paymentIntentId: res.body.data.paymentIntent.id
-  paymentRecordId: res.body.data.paymentRecordId
-  coinsToReceive: res.body.data.coinsToReceive
-  sessionId: res.body.data.sessionId
+  paypalPaymentIntentId: res.body.data.paymentIntent.id
+  paypalPaymentRecordId: res.body.data.paymentRecordId
+  paypalCoinsToReceive: res.body.data.coinsToReceive
+  paypalSessionId: res.body.data.sessionId
 }
 
 assert {
@@ -41,15 +41,12 @@ assert {
     "exists": true
   }
   jsonpath: $.data.coinsToReceive {
-    "eq": 50
+    "eq": 75
   }
   jsonpath: $.data.sessionId {
     "exists": true
   }
   jsonpath: $.message {
     "contains": "created successfully"
-  }
-  jsonpath: $.code {
-    "exists": true
   }
 }

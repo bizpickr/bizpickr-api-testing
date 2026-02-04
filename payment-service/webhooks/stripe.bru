@@ -1,5 +1,5 @@
 meta {
-  name: Stripe Webhook
+  name: Stripe Webhook - Payment Succeeded
   type: http
   seq: 1
 }
@@ -8,19 +8,88 @@ post {
   url: {{paymentServiceUrl}}/api/v1/webhook/stripe
   body: json
   auth: none
+  headers: {
+    stripe-signature: t=1234567890,v1=test_signature
+  }
 }
 
 body:json {
   {
-    "id": "evt_123",
+    "id": "evt_test_stripe_{{$timestamp}}",
+    "object": "event",
     "type": "payment_intent.succeeded",
     "data": {
       "object": {
-        "id": "pi_123",
+        "id": "{{paymentIntentId}}",
+        "object": "payment_intent",
         "amount": 5000,
         "currency": "usd",
-        "status": "succeeded"
+        "status": "succeeded",
+        "metadata": {
+          "vendorId": "{{vendorId}}",
+          "paymentRecordId": "{{paymentRecordId}}",
+          "coinsToCredit": "{{coinsToReceive}}"
+        }
       }
-    }
+    },
+    "created": {{$timestamp}}
+  }
+}
+
+assert {
+  status: 200
+  jsonpath: $.received {
+    "eq": true
+  }
+  jsonpath: $.status {
+    "in": ["queued_for_processing", "already_queued"]
+  }
+  jsonpath: $.correlationId {
+    "exists": true
+  }
+}
+
+### Stripe Webhook - Payment Failed
+post {
+  url: {{paymentServiceUrl}}/api/v1/webhook/stripe
+  body: json
+  auth: none
+  headers: {
+    stripe-signature: t=1234567890,v1=test_signature
+  }
+}
+
+body:json {
+  {
+    "id": "evt_test_stripe_failed_{{$timestamp}}",
+    "object": "event",
+    "type": "payment_intent.payment_failed",
+    "data": {
+      "object": {
+        "id": "pi_test_failed",
+        "object": "payment_intent",
+        "amount": 5000,
+        "currency": "usd",
+        "status": "requires_payment_method",
+        "last_payment_error": {
+          "message": "Your card was declined.",
+          "code": "card_declined"
+        }
+      }
+    },
+    "created": {{$timestamp}}
+  }
+}
+
+assert {
+  status: 200
+  jsonpath: $.received {
+    "eq": true
+  }
+  jsonpath: $.status {
+    "in": ["queued_for_processing", "already_queued"]
+  }
+  jsonpath: $.correlationId {
+    "exists": true
   }
 }

@@ -1,0 +1,10 @@
+meta {
+  name: "Check Socket Status"
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{notificationServiceUrl}}/socket/status
+  body: none
+}

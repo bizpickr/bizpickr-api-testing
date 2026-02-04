@@ -1,5 +1,5 @@
 meta {
-  name: get wallet
+  name: Get Wallet Balance
   type: http
   seq: 1
 }
@@ -8,6 +8,25 @@ get {
   url: {{vendorServiceUrl}}/wallet
   body: none
   auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data.balance {
+    "gte": 0
+  }
+  jsonpath: $.data.totalCredits {
+    "gte": 0
+  }
+  jsonpath: $.data.totalDebits {
+    "gte": 0
+  }
+  jsonpath: $.data.status {
+    "eq": "active"
+  }
 }
 
 settings {

@@ -1,11 +1,33 @@
 meta {
   name: Get Payment Status
   type: http
-  seq: 2
+  seq: 4
 }
 
 get {
   url: {{paymentServiceUrl}}/api/v1/payment/vendor/status/{{paymentIntentId}}
   body: none
   auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data.paymentIntentId {
+    "exists": true
+  }
+  jsonpath: $.data.status {
+    "in": ["pending", "processing", "completed", "failed", "cancelled"]
+  }
+  jsonpath: $.data.amount {
+    "exists": true
+  }
+  jsonpath: $.data.coinsCredited {
+    "exists": true
+  }
+  jsonpath: $.data.paymentMethod {
+    "in": ["stripe", "paypal"]
+  }
 }

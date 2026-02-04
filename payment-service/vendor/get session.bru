@@ -1,5 +1,5 @@
 meta {
-  name: Get Session Details
+  name: Get Payment Session
   type: http
   seq: 3
 }
@@ -8,4 +8,35 @@ get {
   url: {{paymentServiceUrl}}/api/v1/payment/vendor/session/{{sessionId}}
   body: none
   auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data.paymentIntentId {
+    "exists": true
+  }
+  jsonpath: $.data.paymentRecordId {
+    "exists": true
+  }
+  jsonpath: $.data.vendorId {
+    "exists": true
+  }
+  jsonpath: $.data.amount {
+    "exists": true
+  }
+  jsonpath: $.data.coinsToCredit {
+    "exists": true
+  }
+  jsonpath: $.data.status {
+    "in": ["created", "processing", "completed", "failed", "expired"]
+  }
+  jsonpath: $.data.expiresAt {
+    "exists": true
+  }
+  jsonpath: $.message {
+    "contains": "retrieved successfully"
+  }
 }

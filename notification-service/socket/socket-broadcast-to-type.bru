@@ -1,0 +1,26 @@
+meta {
+  name: "Broadcast to User Type"
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{notificationServiceUrl}}/socket/notifications/send
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "event": "notification:new",
+    "recipientType": "customer",
+    "data": {
+      "title": "Broadcast Test Notification",
+      "message": "This notification was broadcasted to all customers",
+      "category": "TEST",
+      "subCategory": "BROADCAST_TEST",
+      "priority": "high",
+      "timestamp": "{{currentTimestamp}}"
+    }
+  }
+}

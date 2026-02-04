@@ -1,0 +1,275 @@
+meta {
+  name: End-to-End Payment to Wallet Flow
+  type: http
+  seq: 1
+}
+
+### Prerequisites: Ensure services are healthy
+get {
+  url: {{paymentServiceUrl}}/health
+  body: none
+  auth: none
+}
+
+assert {
+  status: 200
+  jsonpath: $.status {
+    "eq": "OK"
+  }
+}
+
+get {
+  url: {{vendorServiceUrl}}/health
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.status {
+    "eq": "OK"
+  }
+}
+
+### Step 1: Record Initial Wallet State
+get {
+  url: {{vendorServiceUrl}}/wallet
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+}
+
+vars {
+  "initialBalance": $.data.balance
+  "initialTotalCredits": $.data.totalCredits
+  "initialTotalDebits": $.data.totalDebits
+}
+
+### Step 2: Create Payment Intent
+post {
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/intent
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "amount": 20,
+    "currency": "USD",
+    "paymentMethod": "stripe",
+    "metadata": {
+      "test": "e2e_test",
+      "description": "E2E Test - 20 coins purchase"
+    }
+  }
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data.paymentIntent.id {
+    "exists": true
+  }
+  jsonpath: $.data.coinsToReceive {
+    "eq": 20
+  }
+}
+
+vars {
+  "paymentIntentId": $.data.paymentIntent.id
+  "paymentRecordId": $.data.paymentRecordId
+  "expectedCoins": $.data.coinsToReceive
+}
+
+### Step 3: Verify Payment Record Created (Pending Status)
+get {
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/status/{{paymentRecordId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data.status {
+    "eq": "pending"
+  }
+  jsonpath: $.data.amount {
+    "eq": 20
+  }
+  jsonpath: $.data.coinsCredited {
+    "eq": 20
+  }
+}
+
+### Step 4: Simulate Payment Success Webhook
+# Get test webhook payload
+get {
+  url: {{paymentServiceUrl}}/api/v1/webhook/test/stripe
+  body: none
+  auth: none
+}
+
+assert {
+  status: 200
+}
+
+vars {
+  "webhookPayload": $.payload
+}
+
+# Send webhook (this will create inbox entry)
+post {
+  url: {{paymentServiceUrl}}/api/v1/webhook/stripe
+  headers {
+    "stripe-signature": "t=1234567890,v1=test_signature"
+  }
+  body: json
+  auth: none
+}
+
+body:json {{webhookPayload}}
+
+assert {
+  status: 200
+  jsonpath: $.received {
+    "eq": true
+  }
+  jsonpath: $.status {
+    "eq": "processing"
+  }
+}
+
+### Step 5: Wait for Inbox/Outbox Processing
+# In real testing, you might add a delay here
+# For now, we'll check the status
+
+sleep {
+  duration: 5000  # 5 seconds
+}
+
+### Step 6: Verify Payment Status Changed to Completed
+get {
+  url: {{paymentServiceUrl}}/api/v1/payment/vendor/status/{{paymentRecordId}}
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data.status {
+    "eq": "completed"
+  }
+  jsonpath: $.data.paymentProviderId {
+    "exists": true
+  }
+}
+
+### Step 7: Verify Wallet Was Credited
+get {
+  url: {{vendorServiceUrl}}/wallet
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data.balance {
+    "eq": {{initialBalance}} + {{expectedCoins}}
+  }
+  jsonpath: $.data.totalCredits {
+    "eq": {{initialTotalCredits}} + {{expectedCoins}}
+  }
+}
+
+### Step 8: Verify Wallet Transaction Created
+get {
+  url: {{vendorServiceUrl}}/wallet/transactions?referenceType=coin_purchase&limit=5
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data.docs[0].transactionType {
+    "eq": "credit"
+  }
+  jsonpath: $.data.docs[0].amount {
+    "eq": {{expectedCoins}}
+  }
+  jsonpath: $.data.docs[0].referenceType {
+    "eq": "coin_purchase"
+  }
+  jsonpath: $.data.docs[0].status {
+    "eq": "completed"
+  }
+}
+
+### Step 9: Verify Inbox/Outbox Health
+get {
+  url: {{paymentServiceUrl}}/health
+  body: none
+  auth: none
+}
+
+assert {
+  status: 200
+  jsonpath: $.services.inbox.stuck {
+    "eq": 0
+  }
+  jsonpath: $.services.outbox.stuck {
+    "eq": 0
+  }
+}
+
+get {
+  url: {{vendorServiceUrl}}/inbox/health
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.stuck {
+    "eq": 0
+  }
+}
+
+### Final Verification: Complete Balance Check
+get {
+  url: {{vendorServiceUrl}}/wallet
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data.balance {
+    "gte": {{initialBalance}} + {{expectedCoins}}
+  }
+  jsonpath: $.data.status {
+    "eq": "active"
+  }
+}

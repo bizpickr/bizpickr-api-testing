@@ -1,11 +1,33 @@
 meta {
   name: Get Payment Stats
   type: http
-  seq: 5
+  seq: 6
 }
 
 get {
   url: {{paymentServiceUrl}}/api/v1/payment/vendor/stats
   body: none
   auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.success {
+    "eq": true
+  }
+  jsonpath: $.data.totalSpent {
+    "exists": true
+  }
+  jsonpath: $.data.totalCoinsPurchased {
+    "exists": true
+  }
+  jsonpath: $.data.totalPayments {
+    "exists": true
+  }
+  jsonpath: $.data.successRate {
+    "exists": true
+  }
+  jsonpath: $.message {
+    "contains": "retrieved successfully"
+  }
 }

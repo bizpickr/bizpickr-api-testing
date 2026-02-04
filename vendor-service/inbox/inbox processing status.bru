@@ -1,0 +1,44 @@
+meta {
+  name: Inbox Processing Status
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{vendorServiceUrl}}/inbox/health
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.healthy {
+    "eq": true
+  }
+  jsonpath: $.pending {
+    "gte": 0
+  }
+  jsonpath: $.stuck {
+    "eq": 0
+  }
+}
+
+### Get inbox stats
+get {
+  url: {{vendorServiceUrl}}/inbox/stats
+  body: none
+  auth: inherit
+}
+
+assert {
+  status: 200
+  jsonpath: $.pending {
+    "gte": 0
+  }
+  jsonpath: $.processed {
+    "gte": 0
+  }
+  jsonpath: $.failed {
+    "gte": 0
+  }
+}

@@ -1,5 +1,5 @@
 meta {
-  name: PayPal Webhook
+  name: PayPal Webhook - Payment Success
   type: http
   seq: 2
 }
@@ -8,19 +8,40 @@ post {
   url: {{paymentServiceUrl}}/api/v1/webhook/paypal
   body: json
   auth: none
+  headers {
+    paypal-transmission-id: test_transmission_id
+    paypal-transmission-time: {{$timestamp}}
+    paypal-transmission-sig: test_signature
+  }
 }
 
 body:json {
   {
-    "id": "WH-123",
+    "id": "WH-TEST-{{$timestamp}}",
     "event_type": "PAYMENT.CAPTURE.COMPLETED",
+    "create_time": "2024-01-01T00:00:00Z",
+    "resource_type": "capture",
     "resource": {
-      "id": "CAP-123",
+      "id": "{{paypalPaymentIntentId}}",
+      "status": "COMPLETED",
       "amount": {
-        "value": "50.00",
-        "currency_code": "USD"
+        "currency_code": "USD",
+        "value": "75.00"
       },
-      "status": "COMPLETED"
+      "custom_id": "{{paypalSessionId}}"
     }
+  }
+}
+
+assert {
+  status: 200
+  jsonpath: $.received {
+    "eq": true
+  }
+  jsonpath: $.status {
+    "in": ["queued_for_processing", "already_queued"]
+  }
+  jsonpath: $.correlationId {
+    "exists": true
   }
 }

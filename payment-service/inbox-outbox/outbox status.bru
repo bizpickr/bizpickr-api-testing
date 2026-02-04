@@ -1,0 +1,53 @@
+meta {
+  name: Outbox Status Monitoring
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{paymentServiceUrl}}/health
+  body: none
+  auth: none
+}
+
+assert {
+  status: 200
+  jsonpath: $.status {
+    "eq": "OK"
+  }
+  jsonpath: $.services.outbox {
+    "exists": true
+  }
+  jsonpath: $.services.outbox.healthy {
+    "eq": true
+  }
+  jsonpath: $.services.outbox.pending {
+    "gte": 0
+  }
+  jsonpath: $.services.outbox.processing {
+    "gte": 0
+  }
+  jsonpath: $.services.outbox.stuck {
+    "eq": 0
+  }
+  jsonpath: $.services.outbox.published {
+    "gte": 0
+  }
+}
+
+### Get outbox stats via metrics
+get {
+  url: {{paymentServiceUrl}}/metrics
+  body: none
+  auth: none
+}
+
+assert {
+  status: 200
+  body {
+    "contains": "outbox"
+  }
+  body {
+    "contains": "payment"
+  }
+}

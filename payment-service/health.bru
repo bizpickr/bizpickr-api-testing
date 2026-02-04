@@ -9,3 +9,25 @@ get {
   body: none
   auth: none
 }
+
+assert {
+  status: 200
+  jsonpath: $.status {
+    "eq": "OK"
+  }
+  jsonpath: $.service {
+    "eq": "payment-service"
+  }
+  jsonpath: $.services.database.status {
+    "eq": "OK"
+  }
+  jsonpath: $.services.redis.status {
+    "eq": "OK"
+  }
+  jsonpath: $.uptime {
+    "exists": true
+  }
+  jsonpath: $.memory {
+    "exists": true
+  }
+}

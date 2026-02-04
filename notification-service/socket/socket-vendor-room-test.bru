@@ -1,0 +1,68 @@
+meta {
+  name: "Test Vendor Room Events"
+  type: websocket
+  seq: 1
+}
+
+websocket {
+  url: {{notificationServiceUrl}}/vendor
+  protocols: ["websocket"]
+}
+
+on:open {
+  log("🔌 Connecting to vendor namespace...");
+
+  // Authenticate as vendor
+  send {
+    "event": "user:authenticate",
+    "data": {
+      "userId": "vendor_123",
+      "userType": "vendor",
+      "token": "{{vendorToken}}"
+    }
+  }
+}
+
+on:message {
+  if (data.event === "user:authenticated") {
+    log("✅ Vendor authenticated successfully");
+
+    // Join vendor room
+    send {
+      "event": "join_room",
+      "data": { "roomId": "vendor:vendor_123" }
+    }
+
+    // Subscribe to lead notifications
+    send {
+      "event": "subscribe_lead",
+      "data": { "leadId": "lead_456" }
+    }
+
+    log("📋 Joined vendor room and subscribed to leads");
+  }
+
+  if (data.event === "notification:new") {
+    log("🔔 VENDOR NOTIFICATION RECEIVED:");
+    log(data.data);
+  }
+
+  if (data.event === "lead:new") {
+    log("📋 VENDOR LEAD RECEIVED:");
+    log(data.data);
+  }
+
+  if (data.event === "user:authentication_failed") {
+    log("❌ Authentication failed:");
+    log(data.data);
+  }
+}
+
+on:close {
+  log("🔌 Vendor socket connection closed");
+}
+
+on:error {
+  log("❌ Vendor socket error:");
+  log(error);
+}

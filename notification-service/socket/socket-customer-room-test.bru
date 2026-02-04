@@ -1,0 +1,67 @@
+meta {
+  name: "Test Customer Room Events"
+  type: websocket
+  seq: 2
+}
+
+websocket {
+  url: {{notificationServiceUrl}}/customer
+  protocols: ["websocket"]
+}
+
+on:open {
+  log("🔌 Connecting to customer namespace...");
+
+  // Authenticate as customer
+  send {
+    "event": "user:authenticate",
+    "data": {
+      "userId": "customer_456",
+      "userType": "customer",
+      "token": "{{customerToken}}"
+    }
+  }
+}
+
+on:message {
+  if (data.event === "user:authenticated") {
+    log("✅ Customer authenticated successfully");
+
+    // Join customer room
+    send {
+      "event": "join_room",
+      "data": { "roomId": "customer:customer_456" }
+    }
+
+    log("📋 Joined customer room");
+  }
+
+  if (data.event === "notification:new") {
+    log("🔔 CUSTOMER NOTIFICATION RECEIVED:");
+    log(data.data);
+  }
+
+  if (data.event === "vendor:response") {
+    log("💼 CUSTOMER VENDOR RESPONSE RECEIVED:");
+    log(data.data);
+  }
+
+  if (data.event === "lead:updated") {
+    log("📝 CUSTOMER LEAD UPDATE RECEIVED:");
+    log(data.data);
+  }
+
+  if (data.event === "user:authentication_failed") {
+    log("❌ Authentication failed:");
+    log(data.data);
+  }
+}
+
+on:close {
+  log("🔌 Customer socket connection closed");
+}
+
+on:error {
+  log("❌ Customer socket error:");
+  log(error);
+}
