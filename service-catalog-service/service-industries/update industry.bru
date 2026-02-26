@@ -1,0 +1,30 @@
+meta {
+  name: update industry
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{serviceCatalogUrl}}/industries/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: {{industryId}}
+}
+
+body:json {
+  {
+    "name": "Medical",
+    "displayName": "Healthcare & Medical (Updated)",
+    "description": "Healthcare, medical devices, clinics, hospitals - updated",
+    "icon": "🏥",
+    "coinsPerLead": 55
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,17 +1,21 @@
 meta {
-  name: get service
+  name: get industry by id
   type: http
-  seq: 6
+  seq: 3
 }
 
 get {
-  url: {{serviceCatalogUrl}}/:serviceId
+  url: {{serviceCatalogUrl}}/industries/:id
   body: none
   auth: inherit
 }
 
 params:path {
-  serviceId: {{serviceId}}
+  id: {{industryId}}
+}
+
+headers {
+  x: 
 }
 
 settings {

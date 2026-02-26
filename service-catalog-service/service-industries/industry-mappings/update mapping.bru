@@ -1,0 +1,30 @@
+meta {
+  name: update mapping
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{serviceCatalogUrl}}/industries/:id/mappings/:mappingId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: {{industryId}}
+  mappingId: {{mappingId}}
+}
+
+body:json {
+  {
+    "title": "Medical Website (Updated)",
+    "description": "Professional website for clinic or hospital - updated",
+    "icon": "🌐",
+    "sortOrder": 1
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

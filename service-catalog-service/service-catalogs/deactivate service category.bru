@@ -1,11 +1,11 @@
 meta {
-  name: get service
+  name: deactivate service category
   type: http
-  seq: 6
+  seq: 3
 }
 
-get {
-  url: {{serviceCatalogUrl}}/:serviceId
+put {
+  url: {{serviceCatalogUrl}}/:serviceId/deactivate
   body: none
   auth: inherit
 }

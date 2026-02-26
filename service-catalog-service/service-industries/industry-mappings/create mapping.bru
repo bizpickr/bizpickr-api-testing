@@ -1,0 +1,40 @@
+meta {
+  name: create mapping
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{serviceCatalogUrl}}/industries/:id/mappings
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: {{industryId}}
+}
+
+body:json {
+  {
+    "serviceId": "{{serviceId}}",
+    "icon": "🌐",
+    "title": "Medical Website",
+    "description": "Professional website for clinic or hospital",
+    "sortOrder": 0
+  }
+}
+
+vars:pre-request {
+  serviceId: 2a33bf7a-19bf-4b43-a512-768dda4c3b72
+}
+
+script:post-response {
+  if (res.status >= 200 && res.status < 300 && res.body?.data?.id) {
+    bru.setEnvVar("mappingId", res.body.data.id);
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

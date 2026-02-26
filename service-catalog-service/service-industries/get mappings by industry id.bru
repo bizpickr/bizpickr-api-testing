@@ -1,17 +1,17 @@
 meta {
-  name: get service
+  name: get mappings by industry id
   type: http
-  seq: 6
+  seq: 8
 }
 
 get {
-  url: {{serviceCatalogUrl}}/:serviceId
+  url: {{serviceCatalogUrl}}/industries/:id/mappings
   body: none
   auth: inherit
 }
 
 params:path {
-  serviceId: {{serviceId}}
+  id: {{industryId}}
 }
 
 settings {

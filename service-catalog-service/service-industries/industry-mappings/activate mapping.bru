@@ -1,0 +1,21 @@
+meta {
+  name: activate mapping
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{serviceCatalogUrl}}/industries/:id/mappings/:mappingId/activate
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: {{industryId}}
+  mappingId: {{mappingId}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,22 @@
+meta {
+  name: get all industries
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{serviceCatalogUrl}}/industries
+  body: json
+  auth: inherit
+}
+
+params:query {
+  ~status: ACTIVE
+  ~limit: 10
+  ~page: 1
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

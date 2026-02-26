@@ -1,17 +1,17 @@
 meta {
-  name: get service
+  name: deactivate industry
   type: http
   seq: 6
 }
 
-get {
-  url: {{serviceCatalogUrl}}/:serviceId
+patch {
+  url: {{serviceCatalogUrl}}/industries/:id/deactivate
   body: none
   auth: inherit
 }
 
 params:path {
-  serviceId: {{serviceId}}
+  id: {{industryId}}
 }
 
 settings {

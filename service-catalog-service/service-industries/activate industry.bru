@@ -1,17 +1,17 @@
 meta {
-  name: archive service category
+  name: activate industry
   type: http
   seq: 5
 }
 
-put {
-  url: {{serviceCatalogUrl}}/:serviceId/archive
+patch {
+  url: {{serviceCatalogUrl}}/industries/:id/activate
   body: none
   auth: inherit
 }
 
 params:path {
-  serviceId: 
+  id: {{industryId}}
 }
 
 settings {

@@ -1,0 +1,36 @@
+meta {
+  name: create industry
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{serviceCatalogUrl}}/industries
+  body: json
+  auth: inherit
+}
+
+headers {
+  x-auth-context: admin
+}
+
+body:json {
+  {
+    "name": "Medical",
+    "displayName": "Healthcare & Medical",
+    "description": "Healthcare, medical devices, clinics, hospitals",
+    "icon": "🏥",
+    "coinsPerLead": 50
+  }
+}
+
+script:post-response {
+  if (res.status >= 200 && res.status < 300 && res.body?.data?.id) {
+    bru.setEnvVar("industryId", res.body.data.id);
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

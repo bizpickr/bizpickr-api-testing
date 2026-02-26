@@ -1,17 +1,17 @@
 meta {
-  name: get service
+  name: archive industry
   type: http
-  seq: 6
+  seq: 7
 }
 
-get {
-  url: {{serviceCatalogUrl}}/:serviceId
+patch {
+  url: {{serviceCatalogUrl}}/industries/:id/archive
   body: none
   auth: inherit
 }
 
 params:path {
-  serviceId: {{serviceId}}
+  id: {{industryId}}
 }
 
 settings {

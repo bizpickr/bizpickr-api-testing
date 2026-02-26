@@ -1,0 +1,21 @@
+meta {
+  name: deactivate mapping
+  type: http
+  seq: 6
+}
+
+patch {
+  url: {{serviceCatalogUrl}}/industries/:id/mappings/:mappingId/deactivate
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: {{industryId}}
+  mappingId: {{mappingId}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

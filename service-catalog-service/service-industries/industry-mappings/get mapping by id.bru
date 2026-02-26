@@ -1,0 +1,21 @@
+meta {
+  name: get mapping by id
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{serviceCatalogUrl}}/industries/:id/mappings/:mappingId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: {{industryId}}
+  mappingId: {{mappingId}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
