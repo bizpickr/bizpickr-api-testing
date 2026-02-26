@@ -1,0 +1,20 @@
+meta {
+  name: get industry by code
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{serviceCatalogUrl}}/industries/code/:code
+  body: none
+  auth: inherit
+}
+
+params:path {
+  code: {{industryCode}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

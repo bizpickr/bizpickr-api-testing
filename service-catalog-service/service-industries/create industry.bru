@@ -25,8 +25,11 @@ body:json {
 }
 
 script:post-response {
-  if (res.status >= 200 && res.status < 300 && res.body?.data?.id) {
+  if (res.status >= 200 && res.status < 300 && res.body?.data) {
     bru.setEnvVar("industryId", res.body.data.id);
+    if (res.body.data.code) {
+      bru.setEnvVar("industryCode", res.body.data.code);
+    }
   }
 }
 

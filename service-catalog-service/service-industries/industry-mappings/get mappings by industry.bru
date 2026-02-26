@@ -1,5 +1,5 @@
 meta {
-  name: get mappings by industry
+  name: get mappings by industry (public)
   type: http
   seq: 1
 }
@@ -12,10 +12,6 @@ get {
 
 params:path {
   id: {{industryId}}
-}
-
-params:query {
-  ~status: ACTIVE
 }
 
 settings {

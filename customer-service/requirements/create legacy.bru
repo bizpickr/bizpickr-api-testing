@@ -1,0 +1,30 @@
+meta {
+  name: create (legacy - serviceId)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{customerServiceUrl}}/requirements
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "serviceId": "{{serviceId}}",
+    "serviceName": "Website Development",
+    "budgetType": "fixed",
+    "budget": 5000,
+    "preferredCountry": "IN",
+    "preferredCity": "Mumbai",
+    "vendorType": "company",
+    "noOfVendors": 3,
+    "estimatedTime": "ASAP"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

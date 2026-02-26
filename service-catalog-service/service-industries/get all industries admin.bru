@@ -1,13 +1,17 @@
 meta {
-  name: get all industries (public)
+  name: get all industries (admin)
   type: http
-  seq: 1
+  seq: 2
 }
 
 get {
-  url: {{serviceCatalogUrl}}/industries
+  url: {{serviceCatalogUrl}}/industries/admin
   body: none
   auth: inherit
+}
+
+headers {
+  x-auth-context: admin
 }
 
 params:query {

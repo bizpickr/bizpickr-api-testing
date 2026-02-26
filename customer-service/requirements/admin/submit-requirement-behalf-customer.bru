@@ -16,26 +16,25 @@ params:path {
 
 body:json {
   {
-    "serviceId": "1feabff2-7cd2-4d37-84e7-f34749afe625",
-    "serviceName": "Pro Analytics",
-    "selectedAddons": [
+    "industryCode": "{{industryCode}}",
+    "industryName": "Healthcare & Medical",
+    "selectedMappings": [
       {
-        "addonId": "addon-responsive-001",
-        "addonName": "Responsive Design"
-      },
-      {
-        "addonId": "addon-seo-001",
-        "addonName": "SEO Optimization"
+        "id": "{{mappingId}}",
+        "e": "🌐",
+        "t": "Medical Website",
+        "d": "Professional website for clinic or hospital",
+        "serviceId": "{{serviceId}}",
+        "serviceCode": "website_development"
       }
     ],
     "budgetType": "hourly",
     "budget": 100,
-    "country": "United Kingdom",
-    "city": "Bristol",
+    "preferredCountry": "GB",
+    "preferredCity": "Bristol",
     "vendorType": "freelancer",
     "noOfVendors": 3,
-    "estimatedTime": "ASAP",
-    "description": "I need a modern e-commerce website with user authentication, payment integration, and admin dashboard. The site should be mobile-responsive and optimized for search engines."
+    "estimatedTime": "ASAP"
   }
 }
 

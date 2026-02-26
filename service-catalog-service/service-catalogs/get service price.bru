@@ -1,0 +1,22 @@
+meta {
+  name: get service price
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{serviceCatalogUrl}}/price
+  body: none
+  auth: inherit
+}
+
+params:query {
+  serviceId: {{serviceId}}
+  countryISO: US
+  vendorType: freelancer
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
